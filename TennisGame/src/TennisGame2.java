@@ -91,15 +91,7 @@ public class TennisGame2 implements TennisGame
 	private String normal1(String score) {
 		if (P2point > 0 && P1point==0)
         {
-            if (P2point==1)
-                P2res = "Fifteen";
-            if (P2point==2)
-                P2res = "Thirty";
-            if (P2point==3)
-                P2res = "Forty";
-            
-            P1res = "Love";
-            score = P1res + "-" + P2res;
+			score = getLiteral(P1point) + "-" + getLiteral(P2point);
         }
 		return score;
 	}
