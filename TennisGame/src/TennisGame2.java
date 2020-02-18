@@ -5,6 +5,7 @@ public class TennisGame2 implements TennisGame
     
     private String player1Name;
     private String player2Name;
+    String score="";
 
     public TennisGame2(String player1Name, String player2Name) {
         this.player1Name = player1Name;
@@ -12,19 +13,14 @@ public class TennisGame2 implements TennisGame
     }
 
     public String getScore(){
-        String score = "";
-        score = tie(score);
-        score = Deuces(score);
-        
-        score = normal(score);
-        score = normal(score);
-        
-        score = normal(score);
-        score = normal(score);
-        
-        score = advantage(score);
-        
-        score = win(score);
+    	if(isNormal())
+    		score=getLiteral(P1_Points)+"-"+getLiteral(P2_Points);
+    	if(isTie())
+    		score=getLiteral(P1_Points)+"-"+"All";
+    	if(isDeuce())
+    		score="Deuce";
+    	score= advantage(score);
+    	score= win(score);
         return score;
     }
 
@@ -54,13 +50,9 @@ public class TennisGame2 implements TennisGame
 	}
 
 
-	private String normal(String score) 
+	private boolean isNormal() 
 	{
-		if (P2_Points != P1_Points)
-        {
-            score = getLiteral(P1_Points) + "-" + getLiteral(P2_Points);
-        }
-		return score;
+		return P2_Points!=P1_Points;
 	}
 
 	private String getLiteral(int p1point2) {
@@ -76,24 +68,12 @@ public class TennisGame2 implements TennisGame
 		return result;
 	}
 
-	private String tie(String score) {
-		if (P1_Points == P2_Points && P1_Points < 4)
-        {
-            if (P1_Points==0)
-                score = "Love";
-            if (P1_Points==1)
-                score = "Fifteen";
-            if (P1_Points==2)
-                score = "Thirty";
-            score += "-All";
-        }
-		return score;
+	private boolean isTie() {
+		return P1_Points==P2_Points && P1_Points<4;
 	}
 
-	private String Deuces(String score) {
-		if (P1_Points==P2_Points && P1_Points>=3)
-            score = "Deuce";
-		return score;
+	private boolean isDeuce() {
+		return P1_Points==P2_Points&& P1_Points>=3;
 	}
     
     public void SetP1Score(int number){
