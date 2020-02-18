@@ -1,5 +1,3 @@
-package tennis;
-
 public class TennisGame2 implements TennisGame
 {
     public int P1_Points = 0;
@@ -19,10 +17,10 @@ public class TennisGame2 implements TennisGame
         score = Deuces(score);
         
         score = normal(score);
-        score = normal1(score);
+        score = normal(score);
         
-        score = normal2(score);
-        score = normal3(score);
+        score = normal(score);
+        score = normal(score);
         
         score = advantage(score);
         
@@ -55,35 +53,12 @@ public class TennisGame2 implements TennisGame
 		return score;
 	}
 
-	private String normal3(String score) {
-		if (P2_Points>P1_Points && P2_Points < 4)
-        {
-			score = getLiteral(P1_Points) + "-" + getLiteral(P2_Points);
-        }
-		return score;
-	}
 
-	private String normal2(String score) {
-		if (P1_Points>P2_Points && P1_Points < 4)
+	private String normal(String score) 
+	{
+		if (P2_Points != P1_Points)
         {
-			score = getLiteral(P1_Points) + "-" + getLiteral(P2_Points);
-        }
-		return score;
-	}
-
-	private String normal1(String score) {
-		if (P2_Points > 0 && P1_Points==0)
-        {
-			score = getLiteral(P1_Points) + "-" + getLiteral(P2_Points);
-        }
-		return score;
-	}
-
-	private String normal(String score) {
-		int p1point2 = P1_Points;
-		if (p1point2 > 0 && P2_Points==0)
-        {
-            score = getLiteral(p1point2) + "-" + getLiteral(P2_Points);
+            score = getLiteral(P1_Points) + "-" + getLiteral(P2_Points);
         }
 		return score;
 	}
@@ -153,5 +128,4 @@ public class TennisGame2 implements TennisGame
         else
             P2Score();
     }
-}
 }
